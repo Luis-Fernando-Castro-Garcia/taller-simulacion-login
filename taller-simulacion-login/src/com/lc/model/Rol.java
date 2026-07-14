@@ -5,5 +5,6 @@
 package com.lc.model;
 
 public enum Rol {
-
+    ADMIN,
+    USER
 }
