@@ -7,6 +7,8 @@ package com.lc.controller;
 import com.lc.view.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -42,6 +44,7 @@ public class SceneManager {
             this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
             LoginView vistaLogin = LoginView.getInstanciaLoginView();
             cambiarEscenaPrincipal(vistaLogin, 300, 250);
+            this.escenaPrincipal.setFill(Color.TRANSPARENT);
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
             objetoNulo.printStackTrace(); //Imprime todo el camino hacia el error.
