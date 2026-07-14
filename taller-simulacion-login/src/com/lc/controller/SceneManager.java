@@ -43,8 +43,9 @@ public class SceneManager {
             //Metodo que oculta las opciones de ventana por defecto.
             this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
             LoginView vistaLogin = LoginView.getInstanciaLoginView();
-            cambiarEscenaPrincipal(vistaLogin, 300, 250);
+            cambiarEscenaPrincipal(vistaLogin, 600, 500);
             this.escenaPrincipal.setFill(Color.TRANSPARENT);
+            new LoginController(vistaLogin);
         } catch (NullPointerException objetoNulo) {
             JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
             objetoNulo.printStackTrace(); //Imprime todo el camino hacia el error.
