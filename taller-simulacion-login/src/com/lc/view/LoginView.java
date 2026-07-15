@@ -34,19 +34,18 @@ public class LoginView extends BorderPane {
     private HBox barraDeVentana;
     private Button btnCerrarVentana;
     private Label lblTituloVentana;
-
     private ImageView imgLogoLogin;
     private TextField txtNombreUsuario;
     private Label lblNombreUsuario;
-
     private PasswordField pwdClave;
     private Label lblClave;
-
     private GridPane formulario;
     private Button btnIniciarSesion;
     private VBox cajaVertical;
+    private final String RUTA_ESTILOS = "/com/lc/styles/";
 
     private LoginView() {
+        this.getStylesheets().add(RUTA_ESTILOS + "LoginStyles.css");
         this.setPadding(new Insets(20));
 
         this.setBorder(new Border(
@@ -87,6 +86,9 @@ public class LoginView extends BorderPane {
         lblClave.setFont(Font.font("Arial", 25));
 
         btnIniciarSesion = new Button("Iniciar Sesión");
+        btnIniciarSesion.setMaxHeight(100);
+        btnIniciarSesion.setMaxWidth(100);
+        
 
         formulario.add(lblNombreUsuario, 0, 0);
         formulario.add(txtNombreUsuario, 1, 0);

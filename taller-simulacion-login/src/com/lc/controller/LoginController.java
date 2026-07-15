@@ -4,8 +4,11 @@
  */
 package com.lc.controller;
 
+import com.lc.model.AuthSistema;
+import com.lc.model.Usuario;
 import com.lc.view.LoginView;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class LoginController {
 
@@ -38,9 +41,38 @@ public class LoginController {
 
                     System.out.println("Xd: " + (ejeXVentanaDesplazamiento - ejeX));
                     System.out.println("Yd: " + (ejeYVentanaDesplazamiento - ejeY));
-                    
+
                     escenario.setX((ejeXVentanaDesplazamiento - ejeX));
                     escenario.setY((ejeYVentanaDesplazamiento - ejeY));
                 });
+
+        this.LOGIN_VIEW.getBtnIniciarSesion().setOnMouseClicked(
+                (e) -> {
+                    iniciarSesion();
+                });
+    }
+
+    private AuthSistema authSistemas = new AuthSistema();
+
+    public void iniciarSesion() {
+        String nombreUsuario = this.LOGIN_VIEW.getTxtNombreUsuario().getText().trim();
+        String clave = this.LOGIN_VIEW.getPwdClave().getText().trim();
+
+        if (nombreUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO NOMBRE VACIO");
+            this.LOGIN_VIEW.getTxtNombreUsuario().getStyleClass().add("empty");
+        } else if (clave.isEmpty()) {
+            this.LOGIN_VIEW.getTxtNombreUsuario().getStyleClass().remove("empty");
+            this.LOGIN_VIEW.getPwdClave().getStyleClass().add("empty");
+            JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO CONTRASEÑA VACIA");
+        } else {
+            this.LOGIN_VIEW.getPwdClave().getStyleClass().remove("empty");
+            Usuario usuario = authSistemas.login(nombreUsuario, clave);
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(null, "VALIDE SUS CREDENCIALES");
+            } else {
+                JOptionPane.showMessageDialog(null, "Oa");
+            }
+        }
     }
 }
