@@ -7,50 +7,50 @@ package com.lc.model;
 import java.util.ArrayList;
 
 public class AuthSistema {
-    
-    private ArrayList<Usuario> listaUsuarios;
-    
+
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
     public AuthSistema() {
-        listaUsuarios = new ArrayList<>();
-        crearUsuarios();
-    }
-    
-    private void crearUsuarios() {
-        listaUsuarios.add(new Usuario(
+        Usuario usuarioAdmin = new Usuario(
+                "Admin",
+                "Admin",
+                "Admin",
+                Rol.ADMIN
+        );
+
+        Usuario usuarioUser = new Usuario(
+                "User",
+                "User",
+                "User",
+                Rol.USER
+        );
+
+        Usuario usuarioYo = new Usuario(
                 "Luis",
-                "2025499",
+                "123456789",
                 "Luis Castro",
-                Rol.ADMIN
-        ));
-        
-        listaUsuarios.add(new Usuario(
-                "Cristopher",
-                "2023081",
-                "Cristopher Huaz",
                 Rol.USER
-        ));
-        
-        listaUsuarios.add(new Usuario(
-                "Javier",
-                "2023184",
-                "Javier Hernández",
-                Rol.ADMIN
-        ));
-        
-        listaUsuarios.add(new Usuario(
-                "Jefferson",
-                "2023430",
-                "Jefferson Mazul",
-                Rol.USER
-        ));
+        );
+
+        listaUsuarios.add(usuarioAdmin);
+        listaUsuarios.add(usuarioUser);
+        listaUsuarios.add(usuarioYo);
     }
-    
-    public Usuario login(String user, String pass) {
-        for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombre_usuario().equals(user) && usuario.getPassword().equals(pass)) {
-                return usuario;
+
+    public Usuario login(String nombreUsuario, String Clave) {
+        for (Usuario user : listaUsuarios) {
+            if (user.getNombre_usuario().equals(nombreUsuario) && user.getPassword().equals(Clave)) {
+                return user;
             }
         }
         return null;
+    }
+
+    public ArrayList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 }

@@ -94,7 +94,7 @@ public class LoginView extends BorderPane {
         formulario.add(lblClave, 0, 1);
         formulario.add(pwdClave, 1, 1);
 
-        imgLogoLogin = new ImageView(new ImageController().getImageLogin("Logo"));
+        imgLogoLogin = new ImageView(new ImageController().getImageLogin("logo"));
         imgLogoLogin.setFitWidth(200);
         imgLogoLogin.setFitHeight(200);
         imgLogoLogin.setCache(true);

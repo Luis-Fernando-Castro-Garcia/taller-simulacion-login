@@ -21,10 +21,10 @@ public class ImageController {
         Image imagenAMostrar;
         switch (nombreImagen) {
             case "logo":
-                imagenAMostrar = new Image(RUTA_IMAGENES + "Pibble.jpg");
+                imagenAMostrar = new Image(RUTA_IMAGENES + "PibbleGif.gif");
                 break;
             default:
-                imagenAMostrar = new Image(RUTA_IMAGENES + "Pibble.jpg");
+                imagenAMostrar = new Image(RUTA_IMAGENES + "PibbleGif.gif");
         }
         return imagenAMostrar;
     }
