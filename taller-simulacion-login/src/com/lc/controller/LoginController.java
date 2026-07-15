@@ -20,5 +20,11 @@ public class LoginController {
                 (e) -> {
                     System.exit(0);
                 });
+        
+        this.LOGIN_VIEW.setOnMouseClicked(
+        (e) -> {
+            System.out.println("EJe x: " + e.getScreenX());
+            System.out.println("EJe x: " + e.getSceneX());
+        });
     }
 }
