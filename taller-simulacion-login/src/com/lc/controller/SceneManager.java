@@ -9,7 +9,6 @@ import com.lc.view.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,7 +18,6 @@ public class SceneManager {
 
     private static SceneManager instanciaSceneManager;
     private Stage escenarioPrincipal;
-    private Stage escenarioSecundario;
     private Scene escenaPrincipal;
 
     private SceneManager() {
@@ -31,49 +29,47 @@ public class SceneManager {
             escenarioPrincipal.setScene(escenaPrincipal);
             escenarioPrincipal.sizeToScene();
             escenarioPrincipal.show();
-        } catch (NullPointerException objetoNulo) {
-            JOptionPane.showMessageDialog(null, "Error de objeto nulo: Cambiar Escena Principal");
-            objetoNulo.printStackTrace(); //Imprime todo el camino hacia el error.
-        } catch (Exception errorPadre) {
-            JOptionPane.showMessageDialog(null, "Error padre: Cambiar Escena Principal");
-            errorPadre.printStackTrace();
+        } catch (Exception error) {
+            manejarError("Cambiar Escena Principal", error);
         }
     }
 
     public void ventanaLogin() {
         try {
-            //Metodo que oculta las opciones de ventana por defecto.
             this.escenarioPrincipal.initStyle(StageStyle.TRANSPARENT);
             LoginView vistaLogin = LoginView.getInstanciaLoginView();
-            cambiarEscenaPrincipal(vistaLogin, 600, 500);
+            cambiarEscenaPrincipal(vistaLogin, 700, 600);
             this.escenaPrincipal.setFill(Color.TRANSPARENT);
             new LoginController(vistaLogin);
-        } catch (NullPointerException objetoNulo) {
-            JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
-            objetoNulo.printStackTrace(); //Imprime todo el camino hacia el error.
-        } catch (Exception errorPadre) {
-            JOptionPane.showMessageDialog(null, "Error padre: Ventana login");
-            errorPadre.printStackTrace();
+        } catch (Exception error) {
+            manejarError("Ventana Login", error);
         }
     }
 
-    public void ventanaBienvenida() {
+    public void ventanaBienvenida(String nombreCompleto) {
         try {
-            escenarioSecundario = new Stage();
-            this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
-            this.escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
-            BienvenidaView bienvenida = new BienvenidaView();
-            escenaPrincipal = new Scene(bienvenida, 200, 300);
-            this.escenarioSecundario.setScene(escenaPrincipal);
-            this.escenarioSecundario.sizeToScene();
-            this.escenarioSecundario.showAndWait();
-        } catch (NullPointerException objetoNulo) {
-            JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
-            objetoNulo.printStackTrace(); //Imprime todo el camino hacia el error.
-        } catch (Exception errorPadre) {
-            JOptionPane.showMessageDialog(null, "Error padre: Ventana login");
-            errorPadre.printStackTrace();
+            this.escenarioPrincipal.close();
+
+            Stage escenarioSecundario = new Stage();
+            escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
+            escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
+
+            BienvenidaView bienvenida = new BienvenidaView(nombreCompleto);
+            bienvenida.getBtnCerrarVentana().setOnAction((e) -> escenarioSecundario.close());
+            Scene escenaBienvenida = new Scene(bienvenida, 500, 400);
+            escenaBienvenida.setFill(Color.TRANSPARENT);
+
+            escenarioSecundario.setScene(escenaBienvenida);
+            escenarioSecundario.sizeToScene();
+            escenarioSecundario.showAndWait();
+        } catch (Exception error) {
+            manejarError("Ventana Bienvenida", error);
         }
+    }
+
+    private void manejarError(String contexto, Exception error) {
+        JOptionPane.showMessageDialog(null, "Error en " + contexto + ": " + error.getMessage());
+        error.printStackTrace();
     }
 
     public static SceneManager getInstanciaSceneManager() {
@@ -83,31 +79,11 @@ public class SceneManager {
         return instanciaSceneManager;
     }
 
-    public static void setInstanciaSceneManager(SceneManager instanciaSceneManager) {
-        SceneManager.instanciaSceneManager = instanciaSceneManager;
-    }
-
     public Stage getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
 
     public void setEscenarioPrincipal(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
-    }
-
-    public Stage getEscenarioSecundario() {
-        return escenarioSecundario;
-    }
-
-    public void setEscenarioSecundario(Stage escenarioSecundario) {
-        this.escenarioSecundario = escenarioSecundario;
-    }
-
-    public Scene getEscenaPrincipal() {
-        return escenaPrincipal;
-    }
-
-    public void setEscenaPrincipal(Scene escenaPrincipal) {
-        this.escenaPrincipal = escenaPrincipal;
     }
 }

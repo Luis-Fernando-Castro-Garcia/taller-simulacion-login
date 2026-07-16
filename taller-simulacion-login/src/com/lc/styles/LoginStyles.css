@@ -3,22 +3,176 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
 
-TextField.error{
-    -fx-border-color:red;
-    -fx-border-width:2px;
+/*==========================================
+                LoginView
+==========================================*/
+/*  VENTANA */
+.login-root{
+    -fx-background-color:linear-gradient(
+        to bottom,
+        #2B2B2B,
+        #1D1D1D);
+
+    -fx-background-radius:30;
+    -fx-border-color:#F7C948;
+    -fx-border-width:4;
+    -fx-border-radius:30;
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(0,0,0,.55),
+        30,
+        .3,
+        0,
+        8);
 }
 
-passwordField.error{
-    -fx-border-color:red;
-    -fx-border-width:2px;
+/*  BARRA SUPERIOR  */
+.barra-superior{
+    -fx-background-color:linear-gradient(
+        to right,
+        #FFD54F,
+        #F4B400);
+
+    -fx-background-radius:20 20 0 0;
+    -fx-alignment:center-left;
+    -fx-spacing:15;
 }
 
-TextField.empty{
-    -fx-border-color: orange;
-    -fx-border-width:2px;
+/*  TITULO  */
+.titulo-login{
+    -fx-font-size:22px;
+    -fx-font-weight:bold;
+    -fx-text-fill:#2B2B2B;
+    -fx-letter-spacing:2;
 }
 
-password.empty{
-    -fx-border-color: orange;
-    -fx-border-width:2px;
+/*  BOTON CERRAR  */
+.button-cerrar{
+    -fx-background-color:transparent;
+    -fx-text-fill:#2B2B2B;
+    -fx-font-size:18;
+    -fx-font-weight:bold;
+    -fx-background-radius:30;
+    -fx-cursor:hand;
+}
+
+.button-cerrar:hover{
+    -fx-text-fill:#E53935;
+    -fx-scale-x:1.20;
+    -fx-scale-y:1.20;
+}
+
+/*  CONTENEDOR  */
+.contenedor-login{
+    -fx-background-color:linear-gradient(
+        to bottom,
+        #343434,
+        #2A2A2A);
+
+    -fx-background-radius:25;
+    -fx-padding:25;
+    -fx-spacing:20;
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(255,213,79,.25),
+        18,
+        .2,
+        0,
+        3);
+}
+
+/*  LABELS  */
+.label-login{
+    -fx-text-fill:white;
+    -fx-font-size:18px;
+    -fx-font-weight:bold;
+}
+
+/*  CAMPOS */
+.campo-login{
+    -fx-background-color:#404040;
+    -fx-background-radius:18;
+    -fx-border-radius:18;
+    -fx-border-color:#FFD54F;
+    -fx-border-width:2;
+    -fx-text-fill:white;
+    -fx-prompt-text-fill:#CFCFCF;
+    -fx-padding:10 15 10 15;
+}
+
+.campo-login:focused{
+    -fx-border-color:#FFE082;
+    -fx-border-width:3;
+    -fx-effect:dropshadow(
+        gaussian,
+        #FFD54F,
+        15,
+        .35,
+        0,
+        0);
+}
+
+/*  BOTON INGRESAR   */
+.button-ingresar{
+    -fx-background-color:linear-gradient(
+        to bottom,
+        #FFD54F,
+        #F4B400);
+
+    -fx-background-radius:30;
+    -fx-text-fill:#2B2B2B;
+    -fx-font-size:16px;
+    -fx-font-weight:bold;
+    -fx-padding:12 35;
+    -fx-cursor:hand;
+}
+
+.button-ingresar:hover{
+    -fx-background-color:linear-gradient(
+        to bottom,
+        #FFE082,
+        #FFD54F);
+
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+    -fx-effect:dropshadow(
+        gaussian,
+        gold,
+        18,
+        .35,
+        0,
+        2);
+}
+
+.button-ingresar:pressed{
+    -fx-scale-x:.98;
+    -fx-scale-y:.98;
+}
+
+/*  ERRORES */
+.text-field.error,
+.password-field.error{
+    -fx-border-color:#E53935;
+    -fx-border-width:3;
+    -fx-effect:dropshadow(
+        gaussian,
+        #E53935,
+        10,
+        .5,
+        0,
+        0);
+}
+
+/*  CAMPOS VACIOS   */
+.text-field.empty,
+.password-field.empty{
+    -fx-border-color:#FF9800;
+    -fx-border-width:3;
+    -fx-effect:dropshadow(
+        gaussian,
+        #FF9800,
+        10,
+        .5,
+        0,
+        0);
 }

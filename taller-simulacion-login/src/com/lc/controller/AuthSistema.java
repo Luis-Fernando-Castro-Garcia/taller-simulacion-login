@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.lc.model;
+package com.lc.controller;
 
+import com.lc.model.Rol;
+import com.lc.model.Usuario;
 import java.util.ArrayList;
 
 public class AuthSistema {
@@ -37,20 +39,12 @@ public class AuthSistema {
         listaUsuarios.add(usuarioYo);
     }
 
-    public Usuario login(String nombreUsuario, String Clave) {
+    public Usuario login(String nombreUsuario, String clave) {
         for (Usuario user : listaUsuarios) {
-            if (user.getNombre_usuario().equals(nombreUsuario) && user.getPassword().equals(Clave)) {
+            if (user.getNombreUsuario().equals(nombreUsuario) && user.getPassword().equals(clave)) {
                 return user;
             }
         }
         return null;
-    }
-
-    public ArrayList<Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
-
-    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
     }
 }

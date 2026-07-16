@@ -5,14 +5,7 @@
 package com.lc.view;
 
 import com.lc.controller.ImageController;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,12 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 
 public class LoginView extends BorderPane {
 
@@ -46,55 +36,50 @@ public class LoginView extends BorderPane {
 
     private LoginView() {
         this.getStylesheets().add(RUTA_ESTILOS + "LoginStyles.css");
+        this.getStyleClass().add("login-root");
         this.setPadding(new Insets(20));
 
-        this.setBorder(new Border(
-                new BorderStroke(Paint.valueOf("#D4A373"), //color del borde.
-                        BorderStrokeStyle.SOLID, //estilo de línea 
-                        new CornerRadii(25), // pixeles de redondeado
-                        new BorderWidths(5)) //ancho del borde
-        ));
-
-        this.setBackground(new Background(
-                new BackgroundFill(Paint.valueOf("#FDF0D5"), //color del fondo
-                        new CornerRadii(25), //pixeles de redondeado
-                        Insets.EMPTY //espaciado del fondo
-                )
-        ));
-
         barraDeVentana = new HBox(20);
+        barraDeVentana.getStyleClass().add("barra-superior");
+        barraDeVentana.setAlignment(Pos.CENTER_LEFT);
+        barraDeVentana.setPadding(new Insets(5, 10, 5, 10));
         btnCerrarVentana = new Button("X");
-        lblTituloVentana = new Label("JAVAFX - MAT - SIMULADOR LOGIN");
-        lblTituloVentana.setTextFill(Paint.valueOf("5C4033"));
-
-        imgLogoLogin = new ImageView();
-        txtNombreUsuario = new TextField();
-        lblNombreUsuario = new Label("Usuario:");
+        btnCerrarVentana.getStyleClass().add("button-cerrar");
+        lblTituloVentana = new Label("SIMULADOR LOGIN");
+        lblTituloVentana.getStyleClass().add("titulo-login");
 
         barraDeVentana.getChildren().addAll(btnCerrarVentana, lblTituloVentana);
         this.setTop(barraDeVentana);
 
         cajaVertical = new VBox(25);
+        cajaVertical.getStyleClass().add("contenedor-login");
         formulario = new GridPane();
+        formulario.getStyleClass().add("formulario-login");
+        formulario.setHgap(20);
+        formulario.setVgap(18);
+        formulario.setAlignment(Pos.CENTER);
 
         lblNombreUsuario = new Label("Usuario:");
+        lblNombreUsuario.getStyleClass().add("label-login");
         txtNombreUsuario = new TextField();
-        lblNombreUsuario.setFont(Font.font("Arial", 25));
+        txtNombreUsuario.getStyleClass().add("campo-login");
 
         lblClave = new Label("Contraseña:");
+        lblClave.getStyleClass().add("label-login");
         pwdClave = new PasswordField();
-        lblClave.setFont(Font.font("Arial", 25));
+        pwdClave.getStyleClass().add("campo-login");
 
         btnIniciarSesion = new Button("Iniciar Sesión");
-        btnIniciarSesion.setMaxHeight(100);
-        btnIniciarSesion.setMaxWidth(100);
-        
+        btnIniciarSesion.getStyleClass().add("button-ingresar");
 
         formulario.add(lblNombreUsuario, 0, 0);
         formulario.add(txtNombreUsuario, 1, 0);
 
         formulario.add(lblClave, 0, 1);
         formulario.add(pwdClave, 1, 1);
+
+        VBox.setMargin(formulario, new Insets(10, 0, 5, 0));
+        VBox.setMargin(btnIniciarSesion, new Insets(15, 0, 0, 0));
 
         imgLogoLogin = new ImageView(new ImageController().getImageLogin("logo"));
         imgLogoLogin.setFitWidth(200);
@@ -103,7 +88,9 @@ public class LoginView extends BorderPane {
 
         Circle clip = new Circle(100, 100, 100);
         imgLogoLogin.setClip(clip);
+        imgLogoLogin.getStyleClass().add("logo-login");
 
+        cajaVertical.setPadding(new Insets(20));
         cajaVertical.setAlignment(Pos.CENTER);
 
         cajaVertical.getChildren().addAll(imgLogoLogin, formulario, btnIniciarSesion);
@@ -117,96 +104,19 @@ public class LoginView extends BorderPane {
         return instanciaLoginView;
     }
 
-    public static void setInstanciaLoginView(LoginView instanciaLoginView) {
-        LoginView.instanciaLoginView = instanciaLoginView;
-    }
-
-    public HBox getBarraDeVentana() {
-        return barraDeVentana;
-    }
-
-    public void setBarraDeVentana(HBox barraDeVentana) {
-        this.barraDeVentana = barraDeVentana;
-    }
-
     public Button getBtnCerrarVentana() {
         return btnCerrarVentana;
-    }
-
-    public void setBtnCerrarVentana(Button btnCerrarVentana) {
-        this.btnCerrarVentana = btnCerrarVentana;
-    }
-
-    public Label getLblTituloVentana() {
-        return lblTituloVentana;
-    }
-
-    public void setLblTituloVentana(Label lblTituloVentana) {
-        this.lblTituloVentana = lblTituloVentana;
-    }
-
-    public ImageView getImgLogoLogin() {
-        return imgLogoLogin;
-    }
-
-    public void setImgLogoLogin(ImageView imgLogoLogin) {
-        this.imgLogoLogin = imgLogoLogin;
     }
 
     public TextField getTxtNombreUsuario() {
         return txtNombreUsuario;
     }
 
-    public void setTxtNombreUsuario(TextField txtNombreUsuario) {
-        this.txtNombreUsuario = txtNombreUsuario;
-    }
-
-    public Label getLblNombreUsuario() {
-        return lblNombreUsuario;
-    }
-
-    public void setLblNombreUsuario(Label lblNombreUsuario) {
-        this.lblNombreUsuario = lblNombreUsuario;
-    }
-
     public PasswordField getPwdClave() {
         return pwdClave;
-    }
-
-    public void setPwdClave(PasswordField pwdClave) {
-        this.pwdClave = pwdClave;
-    }
-
-    public Label getLblClave() {
-        return lblClave;
-    }
-
-    public void setLblClave(Label lblClave) {
-        this.lblClave = lblClave;
-    }
-
-    public GridPane getFormulario() {
-        return formulario;
-    }
-
-    public void setFormulario(GridPane Formulario) {
-        this.formulario = Formulario;
     }
 
     public Button getBtnIniciarSesion() {
         return btnIniciarSesion;
     }
-
-    public void setBtnIniciarSesion(Button btnIniciarSesion) {
-        this.btnIniciarSesion = btnIniciarSesion;
-    }
-
-    public VBox getCajaVertical() {
-        return cajaVertical;
-    }
-
-    public void setCajaVertical(VBox cajaVertical) {
-        this.cajaVertical = cajaVertical;
-    }
-
 }
